@@ -6,6 +6,7 @@ Authors: David Mutchler, Dave Fisher, Matt Boutell, Amanda Stouder,
 """  # DONE: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 import rosegraphics as rg
+import math
 
 
 def main():
@@ -96,6 +97,26 @@ def problem3(rect, n, window):
     # TODO: 2. Implement and test this function, TESTING each step as you go.
     #          Tests have been written for you (above).
     # -------------------------------------------------------------------------
+
+    rect.attach_to(window)
+    if rect.corner_1.x > rect.corner_2.x and rect.corner_1.y > rect.corner_2.y:
+        height = rect.corner_1.y - rect.corner_2.y
+        center = rg.Point(rect.corner_1.x, rect.corner_1.y)
+    elif rect.corner_1.x > rect.corner_2.x and rect.corner_1.y < rect.corner_2.y:
+        height = rect.corner_2.y - rect.corner_1.y
+        center = rg.Point(rect.corner_1.x, rect.corner_2.y)
+    elif rect.corner_1.x < rect.corner_2.x and rect.corner_1.y > rect.corner_2.y:
+        height = rect.corner_1.y - rect.corner_2.y
+        center = rg.Point(rect.corner_2.x, rect.corner_1.y)
+    else:
+        height = rect.corner_2.y - rect.corner_1.y
+        center = rg.Point(rect.corner_2.x, rect.corner_2.y)
+    for _ in range(n):
+        circle = rg.Circle(center, (1 / 2) * height)
+        center.x = center.x + height/(math.sqrt(2))
+        center.y = center.y + height/(math.sqrt(2))
+        circle.attach_to(window)
+    window.render()
 
 
 # -----------------------------------------------------------------------------
