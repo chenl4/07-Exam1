@@ -125,7 +125,7 @@ def problem2(line1, line2, thickness, win):
     rectangle.outline_thickness = thickness
     rectangle.outline_color = line1.color
     rectangle.attach_to(win)
-
+    win.render()
 
 # -----------------------------------------------------------------------------
 # Calls  main  to start the ball rolling.
